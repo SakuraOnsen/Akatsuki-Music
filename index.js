@@ -7,10 +7,6 @@ const port = 3000
 const app = express()
 
 
-const http = require("http");
-http.createServer((_, res) => res.end("hello")).listen(8080)
-console.log('Host is running')
-
 const client = new Client({ intents: 32767 })
 module.exports = client;
 client.commands = new Collection();
@@ -22,7 +18,5 @@ const handlers = ['command_handler', 'event_handler'].forEach(handler => {
     require(`./handlers/${handler}`)(client, Discord);
 });
 
-const antijoin = new Collection()
-module.exports = { antijoin }
 
 client.login(process.env.TOKEN)
