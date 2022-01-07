@@ -2,6 +2,7 @@ const { Client, Collection, Intents } = require(`discord.js`);
 const Discord = require('discord.js')
 const { readdirSync } = require('fs');
 const { readFile, writeFile } = require('fs').promises;
+require('dotenv').config()
 
 const client = new Client({ intents: 32767 })
 module.exports = client;
