@@ -66,7 +66,10 @@ module.exports = {
             }
         }).catch((e) => {
             console.log(e);
-            interaction.followUp(`\`${id}\` is not a valid ID.`)
+            interaction.followUp({embeds: [
+                new Discord.MessageEmbed()
+                    .setDescription(`\`${id}\` is not a valid ID.`)
+            ]})
         })
     },
 };
