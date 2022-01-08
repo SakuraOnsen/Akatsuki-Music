@@ -1,33 +1,33 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: "song",
+    name: "music",
     description: "Play a song",
     options: [
         {
             name: "play",
-            description: "Play the song of your choice!",
+            description: "Play the song of your choice",
             type: "SUB_COMMAND",
-            option: [{ name: "Name/URL", description: "Provide the song name or link.", type: "STRING", required: true }]
+            options: [{ name: "name", description: "Provide the song name or link.", type: "STRING", required: true }]
         },
         {
             name: "volume",
-            description: "Change the volume of the song playing.",
+            description: "Change the volume of the song playing",
             type: "SUB_COMMAND",
-            options: [{ name: "percentage", description: "10-10%", type: "NUMBER", required: true }]
+            options: [{ name: "percentage", description: "provide volume percent", type: "NUMBER", required: true }]
         },
         {
-            name: "settings",
-            description: "Select a setting config option.",
+            name: "setting",
+            description: "Select a setting config option",
             type: "SUB_COMMAND",
             options: [{
-                name: "options", description: "Select an option to set.", type: "STRING", required: true,
+                name: "option", description: "Select an option to set", type: "STRING", required: true,
                 choices: [
-                    { name: "Queue", value: "queue" },
-                    { name: "Skip", value: "skip" },
-                    { name: "Pause", value: "pause" },
-                    { name: "Resume", value: "resume" },
-                    { name: "Stop", value: "stop" },
+                    { name: "queue", value: "queue" },
+                    { name: "skip", value: "skip" },
+                    { name: "pause", value: "pause" },
+                    { name: "resume", value: "resume" },
+                    { name: "stop", value: "stop" },
                 ]
 
             }]
@@ -48,7 +48,8 @@ module.exports = {
 
             switch (options.getSubcommand()) {
                 case "play": {
-                    client.distube.playVoiceChannel(VoiceChannel, options.getString("Name/URL"), { textChannel: channel, member: member });
+                    await client.distube.voices.join(VoiceChannel).then(client.distube.playVoiceChannel(VoiceChannel, options.getString("name")/** , { textChannel: channel, member: member }**/))
+                     ;
                     return interaction.followUp({ content: "🎵 Song Request Recieved!" });
                 }
                 case "volume": {
@@ -66,23 +67,23 @@ module.exports = {
                         return interaction.followUp({ content: "⛔ There is no queue" });
 
                     switch (options.getString("options")) {
-                        case "Skip": {
+                        case "skip": {
                             await queue.skip(VoiceChannel);
                             return interaction.followUp({ content: "⏭️ Song has been skipped!" });
                         }
-                        case "Stop": {
+                        case "stop": {
                             await queue.stop(VoiceChannel);
                             return interaction.followUp({ content: "⏹️ Song has been stopped!" });
                         }
-                        case "Pause": {
+                        case "rause": {
                             await queue.pause(VoiceChannel);
                             return interaction.followUp({ content: "⏸️ Song has been paused!" });
                         }
-                        case "Resume": {
+                        case "resume": {
                             await queue.resume(VoiceChannel);
                             return interaction.followUp({ content: "▶️ Song has been resumed!" });
                         }
-                        case "Queue": {
+                        case "queue": {
                             return interaction.followUp({
                                 embeds: [
                                     new Discord.MessageEmbed()
