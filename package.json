@@ -1,28 +1,19 @@
 {
-  "name": "akatsuki-music",
-  "version": "1.0.0",
-  "description": "Akatsuki Music Bot",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SakuraOnsen/Akatsuki-Music.git"
-  },
-  "author": "KireinaR",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SakuraOnsen/Akatsuki-Music/issues"
-  },
-  "homepage": "https://github.com/SakuraOnsen/Akatsuki-Music#readme",
-  "dependencies": {
-    "@replit/database": "^2.0.1",
-    "chalk": "^4.1.2",
-    "discord.js": "^13.5.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.2",
-    "fs": "0.0.1-security",
-    "util": "^0.12.4"
-  }
+    "name": "djs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.0.0",
+        "discord.js": "^13.2.0",
+        "glob": "^7.1.7",
+        "mongoose": "^6.0.2"
+    }
 }
