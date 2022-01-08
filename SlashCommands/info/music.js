@@ -48,7 +48,7 @@ module.exports = {
 
             switch (options.getSubcommand()) {
                 case "play": {
-                    await client.distube.voices.join(VoiceChannel).then(client.distube.playVoiceChannel(VoiceChannel, options.getString("name")/** , { textChannel: channel, member: member }**/))
+                    await client.distube.voices.join(VoiceChannel).then(client.distube.playVoiceChannel(VoiceChannel, options.getString("name") , { textChannel: channel, member: member }))
                      ;
                     return interaction.followUp({ content: "🎵 Song Request Recieved!" });
                 }
@@ -68,19 +68,19 @@ module.exports = {
 
                     switch (options.getString("options")) {
                         case "skip": {
-                            await queue.skip(VoiceChannel);
-                            return interaction.followUp({ content: "⏭️ Song has been skipped!" });
+                            await queue.skipVoiceChannel().then(interaction.followUp({ content: "⏭️ Song has been skipped!" }))
+                            
                         }
                         case "stop": {
-                            await queue.stop(VoiceChannel);
-                            return interaction.followUp({ content: "⏹️ Song has been stopped!" });
+                            await queue.stopVoiceChannel().then(interaction.followUp({ content: "⏹️ Song has been stopped!" }))
+                            
                         }
-                        case "rause": {
-                            await queue.pause(VoiceChannel);
-                            return interaction.followUp({ content: "⏸️ Song has been paused!" });
+                        case "pause": {
+                            await queue.pause().then(interaction.followUp({ content: "⏸️ Song has been paused!" }));
+                            
                         }
                         case "resume": {
-                            await queue.resume(VoiceChannel);
+                            await queue.resume();
                             return interaction.followUp({ content: "▶️ Song has been resumed!" });
                         }
                         case "queue": {
@@ -89,7 +89,7 @@ module.exports = {
                                     new Discord.MessageEmbed()
                                         .setColor("BLUE")
                                         .setDescription(`${queue.songs.map(
-                                            (song, id) => `\n**${id + 1}**. ${song.name} - \`${song.formattedDuration}\``
+                                            (song, id) => `\n**${id}**. ${song.name} - \`${song.formattedDuration}\``
                                         )}`)
                                 ]
                             })

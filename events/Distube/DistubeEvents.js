@@ -1,4 +1,4 @@
-const client = require("./index");
+const client = require("../index");
 const { MessageEmbed } = require("discord.js");
 
 const status = queue =>
@@ -35,10 +35,11 @@ client.distube
     })
     .on("empty", channel => channel.send("Voice channel is empty! Leaving the channel..."))
 
-    .on("searchNoResult", message => message.channel.send(` | No result found!`))
 
-    .on("finish", queue => queue.textChannel.send({embeds: [
-        new MessageEmbed()
-            .setColor("DARK_AQUA")
-            .setDescription("Finished playing queue. Leaving Channel!")
-    ]}))
+    .on("finish", queue => queue.textChannel.send({
+        embeds: [
+            new MessageEmbed()
+                .setColor("DARK_AQUA")
+                .setDescription("Finished playing queue. Leaving Channel!")
+        ]
+    }))
