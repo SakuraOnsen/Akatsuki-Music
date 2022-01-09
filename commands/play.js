@@ -14,12 +14,12 @@ module.exports = {
         const song = args.slice(0).join(" ");
         const VoiceChannel = message.member.voice.channel;
         await client.distube.play(message, song)
-        message.channel.send({
+        /**message.channel.send({
             embeds: [
                 new MessageEmbed()
                     .setColor("BLURPLE")
                     .setDescription("Song Requested!")
             ]
-        })
+        })**/
     },
 };
