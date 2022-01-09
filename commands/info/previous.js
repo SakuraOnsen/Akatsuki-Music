@@ -19,7 +19,7 @@ module.exports = {
             embeds: [
                 new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setDescription("Song Skipped!")
+                    .setDescription("Going back in queue to play previous song!")
             ]
         })
     },
