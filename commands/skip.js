@@ -19,7 +19,7 @@ module.exports = {
             embeds: [
                 new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setDescription("Song Skipped!")
+                    .setDescription("⤵️ Song Skipped!")
             ]
         })
     },

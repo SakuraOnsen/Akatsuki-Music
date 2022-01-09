@@ -18,7 +18,7 @@ module.exports = {
             embeds: [
                 new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setDescription("Left the voice channel")
+                    .setDescription("🚪 Left the voice channel")
             ]
         })
     },

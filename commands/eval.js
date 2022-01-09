@@ -11,6 +11,8 @@ module.exports = {
 
   execute: async (Discord, client, message, args, InvalidUsage, MsgError) => {
 
+    if(message.author.id !== '722302164302692472') return message.channel.send(':x: Invalid User Credentials')
+
 
 
 

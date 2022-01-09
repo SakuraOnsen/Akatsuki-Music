@@ -17,7 +17,7 @@ module.exports = {
         message.channel.send({embeds: [
             new MessageEmbed()
                 .setColor("AQUA")
-                .setDescription("Song has been resumed!")
+                .setDescription("▶️ Song has been resumed!")
         ]})
     },
 };

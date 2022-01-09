@@ -19,7 +19,7 @@ module.exports = {
             embeds: [
                 new MessageEmbed()
                     .setColor("BLURPLE")
-                    .setDescription(`Seeked to \`${vol}\``)
+                    .setDescription(`🔊 Volume set to to \`${vol}%\``)
             ]
         })
     },

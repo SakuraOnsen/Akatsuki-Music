@@ -23,7 +23,7 @@ module.exports = {
         message.channel.send({embeds: [
             new MessageEmbed()
                 .setColor("AQUA")
-                .setDescription("Song has been paused!")
+                .setDescription("⏸️ Song has been paused!")
         ]})
     },
 };

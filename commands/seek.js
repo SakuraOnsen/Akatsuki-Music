@@ -16,6 +16,10 @@ module.exports = {
         const time = Number(args[0])
         if (isNaN(time)) return message.channel.send(`Enter the timeline in seconds please.`)
         await queue.seek(time)
-        message.channel.send(`Seeked to \`${time}\``)
+        message.channel.send({embeds: [
+            new MessageEmbed()
+                .setColor("AQUA")
+                .setDescription(`⏪⏩ Seeked to \`${time}\``)
+        ]})
     },
 };
