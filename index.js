@@ -54,7 +54,11 @@ client.distube
     })
     .on("empty", channel => channel.send("Voice channel is empty! Leaving the channel..."))
     .on("searchNoResult", message => message.channel.send(` | No result found!`))
-    .on("finish", queue => queue.textChannel.send("Finished!"))
+    .on("finish", queue => queue.textChannel.send({embeds: [
+        new MessageEmbed()
+            .setColor("DARK_AQUA")
+            .setDescription('Finsished playing the current queue. Leaving Channel... Hope you enjoyed!')
+    ]}))
 
 
 // Initializing the project

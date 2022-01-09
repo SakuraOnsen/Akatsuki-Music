@@ -14,7 +14,7 @@ module.exports = {
         const queue = client.distube.getQueue(message)
         if (!queue) return message.channel.send('THere are no song next in queue!')
         
-        await queue.previous(message, song)
+        await queue.previous()
         message.channel.send({
             embeds: [
                 new MessageEmbed()

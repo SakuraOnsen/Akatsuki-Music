@@ -10,8 +10,10 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
+        const queue = client.distube.getQueue(message)
 
-        await client.distube.play(message)
+
+        await client.distube.voices.leave(message)
         message.channel.send({
             embeds: [
                 new MessageEmbed()

@@ -10,6 +10,8 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, message, args) => {
+
+        const queue = client.distube.getQueue(message)
         
         const time = Number(args[0])
         if (isNaN(time)) return message.channel.send(`Enter the timeline in seconds please.`)
