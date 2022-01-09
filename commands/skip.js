@@ -11,8 +11,10 @@ module.exports = {
      */
     run: async (client, message, args) => {
 
+        try {
+
         const queue = client.distube.getQueue(message)
-        if (!queue) return message.channel.send('THere are no song next in queue!')
+        if (!queue) return message.channel.send('There are no song next in queue!')
         
         await queue.skip()
         message.channel.send({
@@ -22,5 +24,11 @@ module.exports = {
                     .setDescription("⤵️ Song Skipped!")
             ]
         })
+    } catch(e) {
+        message.channel.send({embeds: [
+            new MessageEmbed()
+            .setDescription(`${e}`)
+        ]})
+    }
     },
 };

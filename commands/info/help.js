@@ -19,7 +19,7 @@ module.exports = {
                 { name: "skip", value: "Usage: `a.skip`\n Aliases: `None`" },
                 { name: "previous", value: "Usage: `a.previous`\n Aliases: `None`" },
                 { name: "seek", value: "Usage: `a.seek [Time In **SECONDS** for eg: 200]`\n Aliases: `None`" },
-                { name: "setvolume", value: "Usage: `a.play [1 = 1%]`\n Aliases: `volume, v, sv`" },
+                { name: "setvolume", value: "Usage: `a.setvolume [1 = 1%]`\n Aliases: `volume, v, sv`" },
                 { name: "leave", value: "Usage: `a.leave`\n Aliases: `None`" },
                 { name: "ping", value: "Usage: `a.ping`\n Aliases: `None`" }
             )
