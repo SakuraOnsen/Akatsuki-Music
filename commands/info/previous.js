@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports = {
     name: "previous",
-    aliases: ['ps','previoussong'],
+    aliases: ['ps', 'previoussong'],
     /**
      *
      * @param {Client} client
@@ -13,7 +13,7 @@ module.exports = {
 
         const queue = client.distube.getQueue(message)
         if (!queue) return message.channel.send('THere are no song next in queue!')
-        
+
         await queue.previous()
         message.channel.send({
             embeds: [
