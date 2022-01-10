@@ -5,7 +5,7 @@ const client = new Client({
 });
 
 const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
-module.exports = webhookClient;
+module.exports.webhookClient= webhookClient;
 
 
 // Global Variables
