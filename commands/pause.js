@@ -43,12 +43,12 @@ module.exports = {
                 .setColor("AQUA")
                 .setDescription("⏸️ Song has been paused!")
         ]})
-     } catch(e) {
-         message.channel.send({embeds: [
-             new MessageEmbed()
-                .setColor("RED")
-                .setDescription(`${e}`)
-         ]})
-     }
+    } catch(e) {
+        message.channel.send({embeds: [
+            new MessageEmbed()
+               .setColor("RED")
+               .setDescription(`${e}`)
+        ]})
+    }
     },
 };

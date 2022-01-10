@@ -46,7 +46,7 @@ module.exports = {
         if (!VoiceChannel)
             return interaction.followUp({ content: "You must be in a voice channel to use the music commands!", ephemeral: true });
 
-        if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.voice.channelId)
+            if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.voice.channelId)
             return interaction.followUp({ content: `I am already playing music in <#${guidl.me.voice.channelId}>.`, ephemeral: true });
 
         try {
