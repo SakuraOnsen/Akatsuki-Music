@@ -1,4 +1,5 @@
 const { Message, Client, DiscordAPIError, MessageEmbed } = require("discord.js");
+const { webhookClient } = require("../index");
 
 module.exports = {
     name: "ping",

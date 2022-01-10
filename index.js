@@ -1,7 +1,11 @@
-const { Client, Collection, MessageEmbed } = require("discord.js");
+const { Client, Collection, MessageEmbed, WebhookClient } = require("discord.js");
+const { webhookId, webhookToken } = require('./config.json');
 const client = new Client({
     intents: 32767,
 });
+
+const webhookClient = new WebhookClient({ id: webhookId, token: webhookToken });
+module.exports = webhookClient;
 
 
 // Global Variables

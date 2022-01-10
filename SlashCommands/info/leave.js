@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: "play",
+    name: "leave",
     description: "play a song",
     options: [
         { name: "song", description: "Song name/URL", type: "STRING", required: true }

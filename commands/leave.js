@@ -1,4 +1,5 @@
 const { MessageEmbed } = require("discord.js");
+const { webhookClient } = require("../index");
 
 module.exports = {
     name: "leave",
@@ -12,10 +13,8 @@ module.exports = {
     run: async (client, message, args) => {
         try {
 
-            const mChannel = client.member.voice.channel;
-            const cChannel = message.member.voice.channel;
-
-            if (!cChannel) return message.channel.send({
+            const VoiceChannel = message.member.voice.channel;
+            if (!VoiceChannel) return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor("RED")
@@ -23,7 +22,7 @@ module.exports = {
                 ]
             })
 
-            if (mChannel !== cChannel) return message.channel.send({
+            if (message.guild.me.voice.channelId && VoiceChannel.id !== message.guild.me.voice.channelId) return message.channel.send({
                 embeds: [
                     new MessageEmbed()
                         .setColor("RED")
@@ -43,13 +42,16 @@ module.exports = {
                 ]
             })
         } catch (e) {
-            message.channel.send({
-                embeds: [
-                    new MessageEmbed()
-                        .setColor("RED")
-                        .setDescription(`${e}`)
-                ]
-            })
+            const errEmbed = new MessageEmbed()
+                .setColor("RED")
+                .setDescription(`${e}`)
+
+            webhookClient.send({
+                content: 'Error',
+                username: 'Akatuki Music',
+                avatarURL: 'https://images-ext-1.discordapp.net/external/RluYBkBAf4G7C2L8nzHoXGwC70iFfVOxrrsfdZXOrrk/%3Fsize%3D256/https/cdn.discordapp.com/avatars/928941386441564211/74aac125f520e94357317db44bfcccd2.png',
+                embeds: [errEmbed],
+            });
         }
     },
 };
