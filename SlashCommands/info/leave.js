@@ -2,10 +2,7 @@ const Discord = require('discord.js');
 
 module.exports = {
     name: "leave",
-    description: "play a song",
-    options: [
-        { name: "song", description: "Song name/URL", type: "STRING", required: true }
-    ],
+    description: "leave voice channel",
 
     run: async (client, interaction, args) => {
 
@@ -15,7 +12,7 @@ module.exports = {
 
             const { options, member, guild, channel } = interaction;
             const VoiceChannel = member.voice.channel;
-            if (!VoiceChannel) return interaction.followUp({ contents: "You need to be in a voice channel to use this command!" })
+            if (!VoiceChannel) return interaction.reply({ contents: "You need to be in a voice channel to use this command!",  ephemeral: true })
 
             if (guild.me.voice.channelId && VoiceChannel.id !== guild.me.voice.channelId)
                 return interaction.followUp({ content: `I am already playing music in <#${guidl.me.voice.channelId}>.`, ephemeral: true });
@@ -26,7 +23,7 @@ module.exports = {
             interaction.followUp({embeds: [
                 new Discord.MessageEmbed()
                     .setColor("RED")
-                    .setDescription("Left the voice channel!")
+                    .setDescription("Left the voice channel!") 
             ]})
 
         } catch (e) {
