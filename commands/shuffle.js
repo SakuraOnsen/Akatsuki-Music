@@ -11,6 +11,7 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (client, message, args) => {
+    const queue = client.distube.getQueue(message);
     const VoiceChannel = message.member.voice.channel;
     if (!VoiceChannel)
       return message.channel.send({
@@ -34,15 +35,16 @@ module.exports = {
             .setDescription("I am already playing in another channel!"),
         ],
       });
-
-    const song = args.slice(0).join(" ");
-    await client.distube.play(message, song);
-    /**message.channel.send({
-            embeds: [
-                new MessageEmbed()
-                    .setColor("BLURPLE")
-                    .setDescription("Song Requested!")
-            ]
-        })**/
+    await queue.shuffle().then(
+      message.channel.send({
+        embeds: [
+          new MessageEmbed()
+            .setDescription("🔀 Shuffled THe Queue!")
+            .setColor("AQUA")
+            .setFooter({ text: `Requested By: ${message.author.tag}` })
+            .setTimestamp(Date.now()),
+        ],
+      })
+    );
   },
 };
