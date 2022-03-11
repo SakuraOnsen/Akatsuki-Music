@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "user",
+    name: "userinfo",
     aliases: ['whois', 'wi'],
     /**
      *
@@ -58,17 +58,17 @@ module.exports = {
                     { name: "Server Presence", value: `User is a server member.` }
                 )
                 .setTimestamp(Date.now())
-            if (target.user.banner) {
+                if (target.user.banner) {
+                    const banner = await client.users.fetch(target.user.id, { force: true }).then(b => b.bannerURL({ dynamic: true, size: 4096 }))
+                    embed2.addFields(
+                        { name: "Banner", value: banner }
+                    )
+                    embed2.setImage(banner)
+                }
                 const banner = await client.users.fetch(target.user.id, { force: true }).then(b => b.bannerURL({ dynamic: true, size: 4096 }))
-                embed2.addFields(
-                    { name: "Banner", value: banner }
-                )
-                embed2.setImage(banner)
-            }
-            const banner = await client.users.fetch(target.user.id, { force: true }).then(b => b.bannerURL({ dynamic: true, size: 4096 }))
-            message.channel.send({ embeds: [embed2] });
-            message.channel.send(`User Banner: \`${banner}\``)
-            message.channel.send(banner)
+                message.channel.send({ embeds: [embed2] });
+                message.channel.send(`User Banner: \`${banner}\``)
+                message.channel.send(banner)
         } else return
 
     }

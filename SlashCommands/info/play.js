@@ -7,7 +7,7 @@ module.exports = {
         { name: "song", description: "Song name/URL", type: "STRING", required: true }
     ],
 
-    run: async (client, interaction, args) => {
+    run: async(client, interaction, args) => {
 
         try {
 
@@ -27,8 +27,8 @@ module.exports = {
             message.channel.send({
                 embeds: [
                     new MessageEmbed()
-                        .setColor("RED")
-                        .setDescription(`${e}`)
+                    .setColor("RED")
+                    .setDescription(`${e}`)
                 ]
             })
         }

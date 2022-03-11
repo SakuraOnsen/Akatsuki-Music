@@ -10,13 +10,15 @@ module.exports = {
      * @param {CommandInteraction} interaction
      * @param {String[]} args
      */
-    run: async (client, interaction, args) => {
-        interaction.followUp({ embeds: [
-            new MessageEmbed()
-                    .setAuthor(client.user.tag, client.user.displayAvatarURL())
-                    .setThumbnail(client.user.displayAvatarURL())
-                    .setDescription(`\`\`\`apache\nLatency_Ping: ${client.ws.ping}ms\nGateway_Ping: ${Date.now() - interaction.createdTimestamp}ms\`\`\``)
-                    .setTimestamp(Date.now())
-        ] });
+    run: async(client, interaction, args) => {
+        interaction.followUp({
+            embeds: [
+                new MessageEmbed()
+                .setAuthor(client.user.tag, client.user.displayAvatarURL())
+                .setThumbnail(client.user.displayAvatarURL())
+                .setDescription(`\`\`\`apache\nLatency_Ping: ${client.ws.ping}ms\nGateway_Ping: ${Date.now() - interaction.createdTimestamp}ms\`\`\``)
+                .setTimestamp(Date.now())
+            ]
+        });
     },
 };
