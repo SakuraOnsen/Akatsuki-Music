@@ -91,9 +91,6 @@ client.distube
   .on("empty", (channel) =>
     channel.send("Voice channel is empty! Leaving the channel...")
   )
-  .on("searchNoResult", (message) =>
-    message.channel.send(` | No result found!`)
-  )
   .on("finish", (queue) =>
     queue.textChannel.send({
       embeds: [
