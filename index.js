@@ -85,7 +85,15 @@ client.distube
     message.channel.send("No result found for: " + query)
   )
   .on("error", (channel, e) => {
-    channel.send(` | An error encountered: ${e.toString().slice(0, 1974)}`);
+    webhookClient.send({
+      embeds: [
+        new MessageEmbed()
+          .setColor("RED")
+          .setDescription(
+            `**Error occurred:\n${e.toString().slice(0, 1974)}**`
+          ),
+      ],
+    });
     console.error(e);
   })
   .on("empty", (channel) =>
