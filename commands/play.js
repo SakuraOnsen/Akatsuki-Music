@@ -36,13 +36,11 @@ module.exports = {
       });
 
     const song = args.slice(0).join(" ");
-    await client.distube.play(message, song);
-    /**message.channel.send({
-            embeds: [
-                new MessageEmbed()
-                    .setColor("BLURPLE")
-                    .setDescription("Song Requested!")
-            ]
-        })**/
+    if (!song) return message.reply("Please specify the song name or URL!");
+    await client.distube.play(message.member.voice.channel, song, {
+      member: message.member,
+      textChannel: message.channel,
+      message,
+    });
   },
 };

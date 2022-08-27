@@ -8,6 +8,7 @@ const { webhookId, webhookToken } = require("./config.json");
 const client = new Client({
   intents: 32767,
 });
+
 const ytSearch = require("yt-search");
 const videoFinder = async (query) => {
   const videoResult = await ytSearch(query);
@@ -44,30 +45,34 @@ const status = (queue) =>
       : "Off"
   }\` | Autoplay: \`${queue.autoplay ? "On" : "Off"}\``;
 client.distube
-  .on("playSong", (queue, song) =>
+  .on("playSong", async (queue, song) => {
+    let n = await videoFinder(song.name);
     queue.textChannel.send({
       embeds: [
         new MessageEmbed()
+          .setThumbnail(n.thumbnail)
           .setColor("DARK_AQUA")
           .setDescription(
-            ` | Playing \`${song.name}\` - \`${
+            `Playing \`${song.name}\` - \`${
               song.formattedDuration
             }\`\nRequested by: ${song.user}\n${status(queue)}`
           ),
       ],
-    })
-  )
-  .on("addSong", (queue, song) =>
+    });
+  })
+  .on("addSong", async (queue, song) => {
+    let n = await videoFinder(song);
     queue.textChannel.send({
       embeds: [
         new MessageEmbed()
+          .setThumbnail(n.thumbnail)
           .setColor("DARK_AQUA")
           .setDescription(
             `Added ${song.name} - \`${song.formattedDuration}\` to the queue by ${song.user}`
           ),
       ],
-    })
-  )
+    });
+  })
   .on("addList", (queue, playlist) =>
     queue.textChannel.send({
       embeds: [

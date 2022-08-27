@@ -15,7 +15,7 @@ module.exports = {
       return message.channel.send(
         `${client.emotes.error} | There is nothing in the queue right now!`
       );
-    queue.shuffle();
+    await queue.shuffle();
     message.channel.send({
       embeds: [
         new MessageEmbed()

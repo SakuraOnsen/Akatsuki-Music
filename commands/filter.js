@@ -1,44 +1,43 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "filter",
-    aliases: ["mode"],
-    /**
-     *
-     * @param {Client} client
-     * @param {Message} message
-     * @param {String[]} args
-     */
-    run: async(client, message, args) => {
-        const queue = client.distube.getQueue(message);
+  name: "filter",
+  aliases: ["mode"],
+  /**
+   *
+   * @param {Client} client
+   * @param {Message} message
+   * @param {String[]} args
+   */
+  run: async (client, message, args) => {
+    const queue = client.distube.getQueue(message);
+    if (!queue) return message.channel.send("There is no queue!");
+    let fa = [
+      "3d",
+      "bassboost",
+      "echo",
+      "karaoke",
+      "nightcore",
+      "vaporwave",
+      "flanger",
+      "gate",
+      "surround",
+    ];
 
-        if (args[0] === "off" && queue.filterslength) {
-            queue.setFilter(false);
-            message.channel.send({
-                embeds: [
-                    new MessageEmbed()
-                    .setColor("AQUA")
-                    .setDescription("Turned Off all filter"),
-                ],
-            });
-        } else if (Object.keys(client.distube.filters).includes(args[0])) {
-            queue.setFilter(args[0]);
-            message.channel.send({
-                embeds: [
-                    new MessageEmbed()
-                    .setColor("AQUA")
-                    .setDescription(`Applied filter ${args[0]}`),
-                ],
-            });
-        } else if (args[0])
-            return message.channel.send({
-                embeds: [
-                    new MessageEmbed()
-                    .setColor("RED")
-                    .setDescription(`**${args[0]}** is not a valid filter`),
-                ],
-            });
-    },
+    const filter = args[0];
+
+    if (filter == "off" && queue.filter.size) queue.filters.clear();
+    else if (Object.keys(client.distube.filters).includes(filter)) {
+      if (queue.filters.has(filter)) queue.filters.remove(filter);
+      else queue.filters.add(filter);
+    } else if (args[0])
+      return message.channel.send(
+        `That is not a valid fiter!\nValid filter: \`${fa.join(", ")}\``
+      );
+    message.channel.send(
+      `Filters in this queue: \`${queue.filters.names.join(", ")}\``
+    );
+  },
 };
 
 /* 
